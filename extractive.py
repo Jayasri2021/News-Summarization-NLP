@@ -1047,34 +1047,3 @@ def pegasus_summary(article, max_length=60, min_length=20):
             inputs["input_ids"],
             max_length=max_length,
             min_length=min_length,
-            length_penalty=2.0,
-            num_beams=4,
-            early_stopping=True
-        )
-    # Decode and return the summary
-    return tokenizer.decode(summary_ids[0], skip_special_tokens=True)
-
-# Apply Pegasus summarization to each article
-data['pegasus_summary'] = data['article'].apply(pegasus_summary)
-
-# Save the dataset with summaries
-output_path = "pegasus_summarized_first5.csv"
-data.to_csv(output_path, index=False)
-
-print(f"Pegasus summaries saved to {output_path}")
-
-"""#pegasus rouge"""
-
-from rouge import Rouge
-
-# Initialize ROUGE
-rouge = Rouge()
-
-# Calculate ROUGE scores for summaries
-data['rouge_scores_pegasus'] = data.apply(lambda row: rouge.get_scores(row['pegasus_summary'], row['article'], avg=True), axis=1)
-
-# Save ROUGE scores
-data.to_csv("pegasus_summarized_first5.csv", index=False)
-print("ROUGE scores saved to summary_with_rouge_scores_pegasus.csv")
-
-
