@@ -53,8 +53,3 @@ Develop a system that:
 - **Dataset**: [CNN/DailyMail](https://huggingface.co/datasets/abisee/cnn_dailymail)
 - **NER Tool**: [spaCy](https://spacy.io/)
 - **Summarization Models**: [Hugging Face Transformers](https://huggingface.co/transformers/)
-
-## Future Work
-- Implement multi-label classification for articles spanning multiple regions.
-- Explore topic-based grouping within each region for more focused summaries.
-- Enhance abstractive summarization models for better fluency and coherence.
